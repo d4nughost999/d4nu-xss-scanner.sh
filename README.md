@@ -18,10 +18,10 @@ Script Bash sederhana untuk melakukan pemeriksaan potensi XSS (Cross-Site Script
 Clone repo:
 ```bash
 
-git clone https://github.com/d4nughost999/xss-scanner.git
+git clone https://github.com/d4nughost999/d4nu-xss-scanner.git
 
-cd xss-scanner
+cd d4nu-xss-scanner
 
-chmod +x xss-scanner.sh
+chmod +x d4nu-xss-scanner.sh
 
-./xss-scanner.sh "http://127.0.0.1/vuln.php?q="
+./d4nu-xss-scanner.sh "http://127.0.0.1/vuln.php?q="
